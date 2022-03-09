@@ -25,7 +25,7 @@ namespace ChallengeConsola
             {
                 var valores = linea.Split(";");
 
-                //Console.WriteLine("Nombre: " + valores[0] +" Edad: "+valores[1]+" Equipo: "+valores[2]+" Estado Civil: "+valores[3]+" Nivel de estudios: "+valores[4]);
+                Console.WriteLine("Nombre: " + valores[0] +" Edad: "+valores[1]+" Equipo: "+valores[2]+" Estado Civil: "+valores[3]+" Nivel de estudios: "+valores[4]);
                 //Console.WriteLine("Cantidad total de personas registradas: " + lineas.Length);
             }
         }

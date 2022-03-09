@@ -9,6 +9,9 @@ namespace ChallengeConsola
         static void Main(string[] args)
         {
 
+            MostrarArreglo Muestra = new MostrarArreglo();
+            Muestra.CapturaDatos();
+            
             /*string[] lineas = File.ReadAllLines(@"C:\Users\Usuario\source\repos\ChallengeConsola\ChallengeConsola\ArchivoALeer\socios.csv");
 
             foreach (var linea in lineas)
