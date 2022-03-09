@@ -11,9 +11,8 @@ namespace ChallengeConsola
 
             MostrarArreglo Muestra = new MostrarArreglo();
             //Muestra.CapturaDatos();
-            //Muestra.CantidadDatos();
-            //Muestra.PromedioEdadSociosRacin();
-            Muestra.ValorLineas();
+            Muestra.CantidadDatos();
+            Muestra.PromedioEdadSociosRacin();
 
             
         } 
