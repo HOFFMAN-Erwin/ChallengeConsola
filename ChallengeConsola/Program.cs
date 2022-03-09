@@ -12,6 +12,7 @@ namespace ChallengeConsola
             MostrarArreglo Muestra = new MostrarArreglo();
             //Muestra.CapturaDatos();
             Muestra.CantidadDatos();
+            Muestra.PromedioSociosRacin();
             
         } 
         

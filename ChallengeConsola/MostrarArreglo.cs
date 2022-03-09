@@ -34,6 +34,22 @@ namespace ChallengeConsola
         {
             Console.WriteLine("Cantidad total de personas registradas: " + lineas.Length);
         }
-   
+        public void PromedioSociosRacin()
+        {
+            lineas[1] = Convert.ToInt32(lineas[1]);
+            double sumatoria = 0;
+            
+            foreach (var linea in lineas)
+            {
+                var valores = linea.Split(";");
+                if (valores[2]=="Racing")
+                {
+                    sumatoria += lineas[1];
+                }
+            }
+
+            double promedio = sumatoria / lineas.Length;
+            Console.WriteLine("Promedio de edades de los hinchas de racing: " + promedio);
+        }
     }   
 }
