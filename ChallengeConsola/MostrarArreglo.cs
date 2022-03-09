@@ -29,6 +29,11 @@ namespace ChallengeConsola
                 //Console.WriteLine("Cantidad total de personas registradas: " + lineas.Length);
             }
         }
+
+        public void CantidadDatos()
+        {
+            Console.WriteLine("Cantidad total de personas registradas: " + lineas.Length);
+        }
    
-        }   
+    }   
 }
