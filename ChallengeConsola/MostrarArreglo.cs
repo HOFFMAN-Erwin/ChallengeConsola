@@ -26,7 +26,6 @@ namespace ChallengeConsola
                 var valores = linea.Split(";");
 
                 Console.WriteLine("Nombre: " + valores[0] +" Edad: "+valores[1]+" Equipo: "+valores[2]+" Estado Civil: "+valores[3]+" Nivel de estudios: "+valores[4]);
-                //Console.WriteLine("Cantidad total de personas registradas: " + lineas.Length);
             }
         }
 
@@ -36,12 +35,19 @@ namespace ChallengeConsola
         }
         public void PromedioSociosRacin()
         {
-            lineas[1] = Convert.ToInt32(lineas[1]);
+
+            int[] arregloRacing = new int[lineas.Length];
+
+            for (int i = 0; i < lineas.Length; i++)
+            {
+                arregloRacing[i] = Convert.ToInt32(lineas[i]);
+            }
+            
             double sumatoria = 0;
             
-            foreach (var linea in lineas)
+            foreach (var linea in arregloRacing)
             {
-                var valores = linea.Split(";");
+                var valores = linea;
                 if (valores[2]=="Racing")
                 {
                     sumatoria += lineas[1];
