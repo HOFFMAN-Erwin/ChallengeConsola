@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using System.Collections;
 using System.Linq;
+using System.Collections.Specialized;
 
 namespace ChallengeConsola
 {
@@ -56,18 +56,9 @@ namespace ChallengeConsola
             Console.WriteLine(promedioEdad);
         }
 
-        public class CasadosUniversitarios
+        public Usuario CrearHincha(int edad, string nombre, string cuadro, string estadoCivil, string estudios)
         {
-            public int edad;
-            public string nombre = "";
-            public string cuadro = "";
-            public string estadoCivil = "";
-            public string estudios = "";
-        }
-
-        public CasadosUniversitarios crearHincha(int edad, string nombre, string cuadro, string estadoCivil, string estudios)
-        {
-            CasadosUniversitarios nuevoHincha = new CasadosUniversitarios();
+            Usuario nuevoHincha = new Usuario();
             nuevoHincha.edad = edad;
             nuevoHincha.nombre = nombre;
             nuevoHincha.cuadro = cuadro;
@@ -75,17 +66,55 @@ namespace ChallengeConsola
             nuevoHincha.estadoCivil = estadoCivil;
             return nuevoHincha;
         }
+        //Deberia realizarse una encapsulacion correcta para proteger los datos sensitivos.
+        public Equipo CrearEquipo(List<Usuario> miembros,string nombre)
+        {
+            Equipo nuevoEquipo = new Equipo();
+            int nSocios=miembros.Count;
+            int edadMenor=999;
+            int edadMayor=0;
+            int edadSum=0;
+            double promedioEdad=0;
+
+            
+
+            foreach (Usuario item in miembros)
+            {
+                edadSum += item.edad;
+                if (edadMenor>item.edad)
+                {
+                    edadMenor = item.edad;
+                }
+
+                if (edadMayor < item.edad)
+                {
+                    edadMayor = item.edad;
+                }
+            }
+
+            promedioEdad = edadSum / nSocios;
+
+
+            nuevoEquipo.nSocios = nSocios;
+            nuevoEquipo.edadMenor = edadMenor;
+            nuevoEquipo.edadMayor = edadMayor;
+            nuevoEquipo.nombre = nombre;
+            nuevoEquipo.promedioEdad = promedioEdad;
+            return nuevoEquipo;
+        
+            
+        }
         public void ListadoPersonasCasadasYUniversitarios()
         {
 
-            List<CasadosUniversitarios> hinchas = new List<CasadosUniversitarios>();
+            List<Usuario> hinchas = new List<Usuario>();
 
             foreach (string linea in lineas)
             {
                 string[] valores = linea.Split(";");
                 if (valores[3] == "Casado" && valores[4] == "Universitario")
                 {
-                    hinchas.Add(crearHincha(int.Parse(valores[1]), valores[0], valores[2], valores[3], valores[4]));
+                    hinchas.Add(CrearHincha(int.Parse(valores[1]), valores[0], valores[2], valores[3], valores[4]));
                 }
             }
 
@@ -96,6 +125,109 @@ namespace ChallengeConsola
                 Console.WriteLine("Edad: " + hinchas[i].edad.ToString() + " Nombre: " + hinchas[i].nombre + " Equipo: " + hinchas[i].cuadro);
             }
 
+        }
+
+        public void ListaHinchaRiver()
+        {
+            List<Usuario> hinchasRiver = new List<Usuario>();
+            Dictionary<string, List<Usuario>> diccionarioRiver = new Dictionary<string, List<Usuario>>();
+            List<Usuario> nombreSumados = new List<Usuario>();
+
+            foreach (string linea in lineas)
+            {
+                string[] valores = linea.Split(";");
+                if (valores[2] == "River")
+                {
+                    hinchasRiver.Add(CrearHincha(int.Parse(valores[1]), valores[0], valores[2], valores[3], valores[4]));
+                }
+            }
+
+            foreach (Usuario item in hinchasRiver)
+            {
+                if (!diccionarioRiver.ContainsKey(item.nombre))
+                {
+                   diccionarioRiver.Add(item.nombre, new List<Usuario>());
+                }
+
+                diccionarioRiver[item.nombre].Add(item);
+            }
+            //hinchasRiver=hinchasRiver.OrderBy<>
+
+
+            foreach (var item in diccionarioRiver)
+            {
+                nombreSumados.Add(CrearHincha(item.Value.Count, item.Key, "", "", ""));
+            }
+
+            nombreSumados = nombreSumados.OrderByDescending(z => z.edad).ToList();
+
+            Console.WriteLine("Nombres mas comunes entre los hinchas de river\n");
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("Nombre: "+nombreSumados[i].nombre + " || Cantidad de hinchas: " + nombreSumados[i].edad.ToString());
+            }
+
+            /*foreach (var tmp in diccionarioRiver)
+            {
+                Console.WriteLine(tmp.Key + ", " + tmp.Value.Count);
+            }*/
+                        
+        }
+
+        public void ListadoCantidadSocios()
+        {
+            List<Usuario> hinchas = new List<Usuario>();
+            Dictionary<string, List<Usuario>> diccionarioEquipos = new Dictionary<string, List<Usuario>>();
+            List<Equipo> equipos = new List<Equipo>();
+
+            foreach (string linea in lineas)
+            {
+                string[] valores = linea.Split(";");
+                
+                hinchas.Add(CrearHincha(int.Parse(valores[1]), valores[0], valores[2], valores[3], valores[4]));
+                
+            }
+
+            foreach (Usuario item in hinchas)
+            {
+                if (!diccionarioEquipos.ContainsKey(item.cuadro))
+                {
+                    diccionarioEquipos.Add(item.cuadro, new List<Usuario>());
+                }
+
+                diccionarioEquipos[item.cuadro].Add(item);
+            }
+
+            
+            foreach (var item in diccionarioEquipos)
+            {
+                equipos.Add(CrearEquipo(item.Value, item.Key));
+                
+
+                //nombreSumados.Add(CrearHincha(item.Value.Count, item.Key, "", "", ""));
+            }
+
+
+           equipos = equipos.OrderByDescending(z => z.nSocios).ToList();
+
+            Console.WriteLine("Datos de edades de los socios en los clubes\n");
+
+            foreach (Equipo item in equipos)
+            {
+                Console.WriteLine("Equipo: " +item.nombre +" || Numero de Socios: " + item.nSocios + " || Promedio de edades: " + item.promedioEdad + " || Menor edad registrada: " + item.edadMenor + " || Mayor edad registrada: " + item.edadMayor+"\n");
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+
+           //     Console.WriteLine("Nombre: " + nombreSumados[i].nombre + " || Cantidad de hinchas: " + nombreSumados[i].edad.ToString());
+            }
+
+            /*foreach (var tmp in diccionarioRiver)
+            {
+                Console.WriteLine(tmp.Key + ", " + tmp.Value.Count);
+            }*/
         }
     }   
 }
