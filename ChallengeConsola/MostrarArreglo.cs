@@ -32,7 +32,7 @@ namespace ChallengeConsola
 
         public void CantidadDatos()
         {
-            Console.WriteLine("Cantidad total de personas registradas: " + lineas.Length);
+            Console.WriteLine("Cantidad total de personas registradas: " + lineas.Length+"\n");
         }
        
         public void PromedioEdadSociosRacin()
@@ -53,7 +53,7 @@ namespace ChallengeConsola
             }
 
             double promedioEdad = (edad / contSociosRacing);
-            Console.WriteLine(promedioEdad);
+            Console.WriteLine("El promedio de edad de los socios de racing es de: "+promedioEdad+"\n");
         }
 
         public Usuario CrearHincha(int edad, string nombre, string cuadro, string estadoCivil, string estudios)
@@ -118,7 +118,7 @@ namespace ChallengeConsola
 
             for (int i = 0; i < 99; i++)
             {
-                Console.WriteLine("Edad: " + hinchas[i].edad.ToString() + " Nombre: " + hinchas[i].nombre + " Equipo: " + hinchas[i].cuadro);
+                Console.WriteLine(" Nombre: " + hinchas[i].nombre + " Edad: " + hinchas[i].edad.ToString() +  " Equipo: " + hinchas[i].cuadro+"\n");
             }
 
         }
@@ -208,6 +208,37 @@ namespace ChallengeConsola
             {
 
             }
+        }
+
+        public void MostrarCodigo()
+        {
+            do
+            {
+                Console.WriteLine("Bienvenidos al challenge!\nEscriba un numero entre el 1 y el 5 para ver el resultado de las consignas.\nIngrese 0 para finalizar");
+                int valor = int.Parse(Console.ReadLine());
+                switch (valor)
+                {
+                    case 1:
+                        CantidadDatos();
+                        break;
+                    case 2:
+                        PromedioEdadSociosRacin();
+                        break;
+                    case 3:
+                        ListadoPersonasCasadasYUniversitarios();
+                        break;
+                    case 4:
+                        ListaHinchaRiver();
+                        break;
+                    case 5:
+                        ListadoCantidadSocios();
+                        break;
+                    case 0: break;
+                    default:
+                        Console.WriteLine("Se ingreso un numero fuera de rango.\n");
+                        break;
+                }
+            } while (true);
         }
     }   
 }

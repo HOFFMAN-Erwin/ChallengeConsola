@@ -14,7 +14,8 @@ namespace ChallengeConsola
             //Muestra.PromedioEdadSociosRacin();
             //Muestra.ListadoPersonasCasadasYUniversitarios();
             //Muestra.ListaHinchaRiver();
-            Muestra.ListadoCantidadSocios();
+            //Muestra.ListadoCantidadSocios();
+            Muestra.MostrarCodigo();
         } 
     }     
 }
