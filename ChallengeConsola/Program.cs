@@ -8,7 +8,6 @@ namespace ChallengeConsola
     {
         static void Main(string[] args)
         {
-
             MostrarArreglo Muestra = new MostrarArreglo();
             //Muestra.CapturaDatos();
             //Muestra.CantidadDatos();
@@ -16,10 +15,6 @@ namespace ChallengeConsola
             //Muestra.ListadoPersonasCasadasYUniversitarios();
             //Muestra.ListaHinchaRiver();
             Muestra.ListadoCantidadSocios();
-            
         } 
-        
-       
-
     }     
 }

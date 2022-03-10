@@ -20,7 +20,7 @@ namespace ChallengeConsola
 
         }
 
-        public void CapturaDatos()
+        /*public void CapturaDatos()
         {
             foreach (string linea in lineas)
             {
@@ -28,7 +28,7 @@ namespace ChallengeConsola
 
                 Console.WriteLine("Nombre: " + valores[0] +" Edad: "+valores[1]+" Equipo: "+valores[2]+" Estado Civil: "+valores[3]+" Nivel de estudios: "+valores[4]);
             }
-        }
+        }*/
 
         public void CantidadDatos()
         {
@@ -91,18 +91,14 @@ namespace ChallengeConsola
                     edadMayor = item.edad;
                 }
             }
-
             promedioEdad = edadSum / nSocios;
-
 
             nuevoEquipo.nSocios = nSocios;
             nuevoEquipo.edadMenor = edadMenor;
             nuevoEquipo.edadMayor = edadMayor;
             nuevoEquipo.nombre = nombre;
             nuevoEquipo.promedioEdad = promedioEdad;
-            return nuevoEquipo;
-        
-            
+            return nuevoEquipo;       
         }
         public void ListadoPersonasCasadasYUniversitarios()
         {
@@ -151,7 +147,6 @@ namespace ChallengeConsola
 
                 diccionarioRiver[item.nombre].Add(item);
             }
-            //hinchasRiver=hinchasRiver.OrderBy<>
 
 
             foreach (var item in diccionarioRiver)
@@ -167,12 +162,6 @@ namespace ChallengeConsola
             {
                 Console.WriteLine("Nombre: "+nombreSumados[i].nombre + " || Cantidad de hinchas: " + nombreSumados[i].edad.ToString());
             }
-
-            /*foreach (var tmp in diccionarioRiver)
-            {
-                Console.WriteLine(tmp.Key + ", " + tmp.Value.Count);
-            }*/
-                        
         }
 
         public void ListadoCantidadSocios()
@@ -203,11 +192,8 @@ namespace ChallengeConsola
             foreach (var item in diccionarioEquipos)
             {
                 equipos.Add(CrearEquipo(item.Value, item.Key));
-                
 
-                //nombreSumados.Add(CrearHincha(item.Value.Count, item.Key, "", "", ""));
             }
-
 
            equipos = equipos.OrderByDescending(z => z.nSocios).ToList();
 
@@ -221,13 +207,7 @@ namespace ChallengeConsola
             for (int i = 0; i < 5; i++)
             {
 
-           //     Console.WriteLine("Nombre: " + nombreSumados[i].nombre + " || Cantidad de hinchas: " + nombreSumados[i].edad.ToString());
             }
-
-            /*foreach (var tmp in diccionarioRiver)
-            {
-                Console.WriteLine(tmp.Key + ", " + tmp.Value.Count);
-            }*/
         }
     }   
 }
