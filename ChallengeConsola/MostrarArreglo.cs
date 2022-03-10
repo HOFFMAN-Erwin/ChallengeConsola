@@ -33,14 +33,7 @@ namespace ChallengeConsola
         {
             Console.WriteLine("Cantidad total de personas registradas: " + lineas.Length);
         }
-        
-
-        public void ListadoPersonasCasadas()
-        {
-            
-        }
-
-
+       
         public void PromedioEdadSociosRacin()
         {
 
@@ -62,5 +55,27 @@ namespace ChallengeConsola
             Console.WriteLine(promedioEdad);
         }
 
+        public void ListadoPersonasCasadasYUniversitarios()
+        {
+            ArrayList listaCasadosUniversitarios = new ArrayList();
+            
+            foreach (var linea in lineas)
+            {
+                var valores = linea.Split(";");
+                if (valores[3]=="Casado" && valores[4]=="Universitario")
+                {
+                    listaCasadosUniversitarios.Add(linea);
+                }
+                /*if (listaCasadosUniversitarios.Count > 99)
+                {
+                    break;
+                }*/
+            }
+            /*foreach (string linea in listaCasadosUniversitarios)
+            {
+                string[] nuevoArrayString = linea.Split(";");
+                Console.WriteLine(linea);
+            }*/
+        }
     }   
 }

@@ -13,7 +13,7 @@ namespace ChallengeConsola
             //Muestra.CapturaDatos();
             Muestra.CantidadDatos();
             Muestra.PromedioEdadSociosRacin();
-
+            Muestra.ListadoPersonasCasadasYUniversitarios();
             
         } 
         
