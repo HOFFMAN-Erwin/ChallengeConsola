@@ -78,46 +78,24 @@ namespace ChallengeConsola
         public void ListadoPersonasCasadasYUniversitarios()
         {
 
-
-            List<CasadosUniversitarios> clientes = new List<CasadosUniversitarios>();
+            List<CasadosUniversitarios> hinchas = new List<CasadosUniversitarios>();
 
             foreach (string linea in lineas)
             {
                 string[] valores = linea.Split(";");
                 if (valores[3] == "Casado" && valores[4] == "Universitario")
                 {
-                    clientes.Add(crearHincha(int.Parse(valores[1]), valores[0], valores[2], valores[3], valores[4]));
+                    hinchas.Add(crearHincha(int.Parse(valores[1]), valores[0], valores[2], valores[3], valores[4]));
                 }
             }
 
-            List<CasadosUniversitarios> listaOrdenada = clientes.OrderBy(z => z.edad).ToList();
+            hinchas = hinchas.OrderBy(z => z.edad).ToList();
 
             for (int i = 0; i < 99; i++)
             {
-                Console.WriteLine("Edad: " + listaOrdenada[i].edad.ToString() + " Nombre: " + listaOrdenada[i].nombre + " Equipo: " + listaOrdenada[i].cuadro);
+                Console.WriteLine("Edad: " + hinchas[i].edad.ToString() + " Nombre: " + hinchas[i].nombre + " Equipo: " + hinchas[i].cuadro);
             }
 
-            /*ArrayList listaCasadosUniversitarios = new ArrayList();
-
-
-            foreach (var linea in lineas)
-            {
-                var valores = linea.Split(";");
-                if (valores[3]=="Casado" && valores[4]=="Universitario")
-                {
-                    listaCasadosUniversitarios.Add(linea);
-                }
-                /*if (listaCasadosUniversitarios.Count > 99)
-                {
-                    break;
-                }
-            }
-            listaCasadosUniversitarios.Sort();
-            foreach (string linea in listaCasadosUniversitarios)
-            {
-                string[] nuevoArrayString = linea.Split(";");
-                Console.WriteLine(linea);
-            }*/
         }
     }   
 }
