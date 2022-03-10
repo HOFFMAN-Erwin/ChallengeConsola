@@ -14,21 +14,12 @@ namespace ChallengeConsola
         string[] lineas = File.ReadAllLines(@"C:\Users\Usuario\source\repos\ChallengeConsola\ChallengeConsola\ArchivoALeer\socios.csv");
 
             public MostrarArreglo()
-        {
-
-            Lista = new ArrayList();
-
-        }
-
-        /*public void CapturaDatos()
-        {
-            foreach (string linea in lineas)
             {
-                string[] valores = linea.Split(";");
 
-                Console.WriteLine("Nombre: " + valores[0] +" Edad: "+valores[1]+" Equipo: "+valores[2]+" Estado Civil: "+valores[3]+" Nivel de estudios: "+valores[4]);
+                Lista = new ArrayList();
+
             }
-        }*/
+
 
         public void CantidadDatos()
         {
