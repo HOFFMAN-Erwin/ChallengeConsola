@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Collections;
+using System.Linq;
 
 namespace ChallengeConsola
 {
@@ -21,9 +22,9 @@ namespace ChallengeConsola
 
         public void CapturaDatos()
         {
-            foreach (var linea in lineas)
+            foreach (string linea in lineas)
             {
-                var valores = linea.Split(";");
+                string[] valores = linea.Split(";");
 
                 Console.WriteLine("Nombre: " + valores[0] +" Edad: "+valores[1]+" Equipo: "+valores[2]+" Estado Civil: "+valores[3]+" Nivel de estudios: "+valores[4]);
             }
@@ -55,10 +56,50 @@ namespace ChallengeConsola
             Console.WriteLine(promedioEdad);
         }
 
+        public class CasadosUniversitarios
+        {
+            public int edad;
+            public string nombre = "";
+            public string cuadro = "";
+            public string estadoCivil = "";
+            public string estudios = "";
+        }
+
+        public CasadosUniversitarios crearHincha(int edad, string nombre, string cuadro, string estadoCivil, string estudios)
+        {
+            CasadosUniversitarios nuevoHincha = new CasadosUniversitarios();
+            nuevoHincha.edad = edad;
+            nuevoHincha.nombre = nombre;
+            nuevoHincha.cuadro = cuadro;
+            nuevoHincha.estudios = estudios;
+            nuevoHincha.estadoCivil = estadoCivil;
+            return nuevoHincha;
+        }
         public void ListadoPersonasCasadasYUniversitarios()
         {
-            ArrayList listaCasadosUniversitarios = new ArrayList();
-            
+
+
+            List<CasadosUniversitarios> clientes = new List<CasadosUniversitarios>();
+
+            foreach (string linea in lineas)
+            {
+                string[] valores = linea.Split(";");
+                if (valores[3] == "Casado" && valores[4] == "Universitario")
+                {
+                    clientes.Add(crearHincha(int.Parse(valores[1]), valores[0], valores[2], valores[3], valores[4]));
+                }
+            }
+
+            List<CasadosUniversitarios> listaOrdenada = clientes.OrderBy(z => z.edad).ToList();
+
+            for (int i = 0; i < 99; i++)
+            {
+                Console.WriteLine("Edad: " + listaOrdenada[i].edad.ToString() + " Nombre: " + listaOrdenada[i].nombre + " Equipo: " + listaOrdenada[i].cuadro);
+            }
+
+            /*ArrayList listaCasadosUniversitarios = new ArrayList();
+
+
             foreach (var linea in lineas)
             {
                 var valores = linea.Split(";");
@@ -69,9 +110,10 @@ namespace ChallengeConsola
                 /*if (listaCasadosUniversitarios.Count > 99)
                 {
                     break;
-                }*/
+                }
             }
-            /*foreach (string linea in listaCasadosUniversitarios)
+            listaCasadosUniversitarios.Sort();
+            foreach (string linea in listaCasadosUniversitarios)
             {
                 string[] nuevoArrayString = linea.Split(";");
                 Console.WriteLine(linea);
